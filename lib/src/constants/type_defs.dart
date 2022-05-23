@@ -6,6 +6,7 @@ import 'dart:async' show FutureOr;
 import 'dart:io' show File;
 
 import 'package:camera/camera.dart' show CameraController, CameraValue, XFile;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart' show BuildContext, Widget;
 
 import 'enums.dart';
@@ -38,6 +39,14 @@ typedef EntitySaveCallback = FutureOr<dynamic> Function(
 typedef CameraErrorHandler = void Function(
   Object error,
   StackTrace? stackTrace,
+);
+
+/// {@template wechat_camera_picker.PreviewConfirmButtonBuilder}
+/// Build custom confirm button in preview screen.
+/// {@endtemplate}
+typedef PreviewConfirmButtonBuilder = Widget Function(
+  BuildContext context,
+  VoidCallback onTap,
 );
 
 /// {@template wechat_camera_picker.ForegroundBuilder}

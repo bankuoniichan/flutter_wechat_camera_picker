@@ -38,6 +38,7 @@ class CameraPickerConfig {
     this.onEntitySaving,
     this.onError,
     this.onXFileCaptured,
+    this.previewConfirmButtonBuilder,
   }) : assert(
           enableRecording == true || onlyEnableRecording != true,
           'Recording mode error.',
@@ -141,4 +142,7 @@ class CameraPickerConfig {
 
   /// {@macro wechat_camera_picker.XFileCapturedCallback}
   final XFileCapturedCallback? onXFileCaptured;
+
+  /// {@macro wechat_camera_picker.PreviewConfirmButtonBuilder}
+  final PreviewConfirmButtonBuilder? previewConfirmButtonBuilder;
 }

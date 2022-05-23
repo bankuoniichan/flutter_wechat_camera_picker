@@ -29,6 +29,7 @@ class CameraPickerViewer extends StatefulWidget {
     this.shouldAutoPreviewVideo = false,
     this.onEntitySaving,
     this.onError,
+    this.previewConfirmButtonBuilder,
   }) : super(key: key);
 
   /// State of the picker.
@@ -59,6 +60,9 @@ class CameraPickerViewer extends StatefulWidget {
   /// {@macro wechat_camera_picker.CameraErrorHandler}
   final CameraErrorHandler? onError;
 
+  /// {@macro wechat_camera_picker.PreviewConfirmButtonBuilder}
+  final PreviewConfirmButtonBuilder? previewConfirmButtonBuilder;
+
   /// Static method to push with the navigator.
   /// 跳转至选择预览的静态方法
   static Future<AssetEntity?> pushToViewer(
@@ -71,6 +75,7 @@ class CameraPickerViewer extends StatefulWidget {
     bool shouldAutoPreviewVideo = false,
     EntitySaveCallback? onEntitySaving,
     CameraErrorHandler? onError,
+    PreviewConfirmButtonBuilder? previewConfirmButtonBuilder,
   }) {
     return Navigator.of(context).push<AssetEntity?>(
       PageRouteBuilder<AssetEntity?>(
@@ -83,6 +88,7 @@ class CameraPickerViewer extends StatefulWidget {
           shouldAutoPreviewVideo: shouldAutoPreviewVideo,
           onEntitySaving: onEntitySaving,
           onError: onError,
+          previewConfirmButtonBuilder: previewConfirmButtonBuilder,
         ),
         transitionsBuilder: (
           BuildContext context,
@@ -317,6 +323,13 @@ class _CameraPickerViewerState extends State<CameraPickerViewer> {
   /// The confirm button for the preview section.
   /// 预览区的确认按钮
   Widget get previewConfirmButton {
+    if (widget.previewConfirmButtonBuilder != null) {
+      return widget.previewConfirmButtonBuilder!(
+        context,
+        createAssetEntityAndPop,
+      );
+    }
+
     return MaterialButton(
       minWidth: 20.0,
       height: 32.0,
