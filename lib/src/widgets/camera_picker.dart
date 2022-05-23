@@ -793,6 +793,7 @@ class CameraPickerState extends State<CameraPicker>
       shouldAutoPreviewVideo: shouldAutoPreviewVideo,
       onEntitySaving: config.onEntitySaving,
       onError: config.onError,
+      previewConfirmButtonBuilder: config.previewConfirmButtonBuilder,
     );
   }
 
